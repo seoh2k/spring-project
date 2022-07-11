@@ -11,4 +11,22 @@
 			ip_address as ipAddress
 		FROM users
 	</select>
+	
+	<select id="selectUserOne" parameterType="int" resultType="app.com.model.Users">
+		SELECT 
+			id as id,
+			first_name as firstName,
+			last_name as lastName,
+			email as email,
+			gender as gender,
+			ip_address as ipAddress
+		FROM users
+		WHERE id = #{id}
+	</select>
+	
+	<delete id="deleteUser" parameterType="int">
+		DELETE
+		FROM users
+		WHERE id = #{id}
+	</delete>
 </mapper>

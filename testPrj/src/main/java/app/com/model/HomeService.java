@@ -18,4 +18,14 @@ public class HomeService {
 		return userList;
 	}
 
+	public Users getUserOne(int id) {
+		
+		return homeMapper.selectUserOne(id);
+	}
+
+	public void removeUser(int id) {
+		
+		homeMapper.deleteUser(id);
+	}
+
 }

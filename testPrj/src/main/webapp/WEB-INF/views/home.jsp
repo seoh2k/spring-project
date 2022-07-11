@@ -27,7 +27,7 @@
 					<td>${u.id}</td>
 					<td>${u.firstName}</td>
 					<td>${u.lastName}</td>
-					<td>${u.email}</td>
+					<td><a href="/model/getUserOne?id=${u.id}">${u.email}</a></td>
 					<td>${u.gender}</td>
 					<td>${u.ipAddress}</td>
 				</tr>

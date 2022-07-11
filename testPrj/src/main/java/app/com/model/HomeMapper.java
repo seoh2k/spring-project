@@ -23,5 +23,13 @@ public class HomeMapper {
 	}
 
 //	public List<Users> selectUsersList();
+	
+	public Users selectUserOne(int id) {
+		return session.selectOne("app.com.model.HomeMapper.selectUserOne", id);
+	}
 
+	public void deleteUser(int id) {
+		
+		session.delete("app.com.model.HomeMapper.deleteUser", id);
+	}
 }

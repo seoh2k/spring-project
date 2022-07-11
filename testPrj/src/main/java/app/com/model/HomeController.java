@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Handles requests for the application home page.
@@ -42,5 +43,24 @@ public class HomeController {
 		model.addAttribute("usersList", usersList);
 		
 		return "home";
+	}
+	
+	@RequestMapping(value = "/getUserOne")
+	public String getUserOne(Model model,
+								@RequestParam(value="id", required = true) int id) {
+		
+		Users user = homeService.getUserOne(id);
+		
+		model.addAttribute("user", user);
+		
+		return "getUserOne";
+	}
+	
+	@RequestMapping(value = "/removeUser",  method = RequestMethod.POST)
+	public String removeUser(@RequestParam(value="id", required = true) int id) {
+		
+		homeService.removeUser(id);
+		
+		return "redirect:/";
 	}
 }
