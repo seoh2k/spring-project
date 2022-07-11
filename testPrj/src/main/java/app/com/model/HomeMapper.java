@@ -32,4 +32,9 @@ public class HomeMapper {
 		
 		session.delete("app.com.model.HomeMapper.deleteUser", id);
 	}
+
+	public void updateUser(Users user) {
+
+		session.update("app.com.model.HomeMapper.updateUser", user);
+	}
 }

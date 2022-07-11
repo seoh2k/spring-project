@@ -8,8 +8,10 @@
 			last_name as lastName,
 			email as email,
 			gender as gender,
-			ip_address as ipAddress
+			ip_address as ipAddress,
+			last_update as lastUpdate
 		FROM users
+		ORDER BY last_update desc
 	</select>
 	
 	<select id="selectUserOne" parameterType="int" resultType="app.com.model.Users">
@@ -19,7 +21,8 @@
 			last_name as lastName,
 			email as email,
 			gender as gender,
-			ip_address as ipAddress
+			ip_address as ipAddress,
+			last_update as lastUpdate
 		FROM users
 		WHERE id = #{id}
 	</select>
@@ -29,4 +32,16 @@
 		FROM users
 		WHERE id = #{id}
 	</delete>
+	
+	<update id="updateUser" parameterType="app.com.model.Users">
+		UPDATE users
+		SET
+			first_name = #{firstName},
+			last_name = #{lastName},
+			email = #{email},
+			gender = #{gender},
+			ip_address = #{ipAddress},
+			last_update = NOW()
+		WHERE id = #{id};
+	</update>
 </mapper>

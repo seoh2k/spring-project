@@ -28,4 +28,9 @@ public class HomeService {
 		homeMapper.deleteUser(id);
 	}
 
+	public void modifyUser(Users user) {
+
+		homeMapper.updateUser(user);
+	}
+
 }

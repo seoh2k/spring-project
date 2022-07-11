@@ -8,6 +8,7 @@ public class Users {
 	private String email;
 	private String gender;
 	private String ipAddress;
+	private String lastUpdate;
 	
 	public int getId() {
 		return id;
@@ -45,4 +46,11 @@ public class Users {
 	public void setIpAddress(String ipAddress) {
 		this.ipAddress = ipAddress;
 	}
+	public String getLastUpdate() {
+		return lastUpdate;
+	}
+	public void setLastUpdate(String lastUpdate) {
+		this.lastUpdate = lastUpdate;
+	}
+	
 }

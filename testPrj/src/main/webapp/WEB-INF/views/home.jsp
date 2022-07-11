@@ -6,20 +6,20 @@
 </head>
 <body>
 <h1>
-	Hello world!  
+	Users 
 </h1>
-
-<P>  The time on the server is ${serverTime}. </P>
 
 <div>
 	<table>
 		<thead>
-			<tr>id</tr>
-			<tr>firstName</tr>
-			<tr>lastName</tr>
-			<tr>email</tr>
-			<tr>gender</tr>
-			<tr>ipAddress</tr>
+			<tr>
+				<th>id</th>
+				<th>first_name</th>
+				<th>last_name</th>
+				<th>email</th>
+				<th>gender</th>
+				<th>ip_address</th>
+			</tr>
 		</thead>
 		<tbody>
 			<c:forEach var="u" items="${usersList}">

@@ -6,39 +6,47 @@
 </head>
 <body>
 <div>
-	<table>
-		<tbody>
-			<tr>
-				<td>id: </td>
-				<td>${user.id}</td>
-			</tr>
-			<tr>
-				<td>firstName: </td>
-				<td>${user.firstName}</td>
-			</tr>
-			<tr>
-				<td>lastName: </td>
-				<td>${user.lastName}</td>
-			</tr>
-			<tr>
-				<td>email: </td>
-				<td>${user.email}</td>
-			</tr>
-			<tr>
-				<td>gender: </td>
-				<td>${user.gender}</td>
-			</tr>
-			<tr>
-				<td>ipAddress: </td>
-				<td>${user.ipAddress}</td>
-			</tr>
-		</tbody>
-	</table>
-	<button><a href="/model/modifyUser?id=${user.id}">수정</a></button>
-	<form id="removeUser" action="/model/removeUser" method="post">
-		<input type="hidden" name="id" value="${user.id}">
-		<button type="submit">삭제</button>
+	<h1>User</h1>
+	<form action="/model/modifyUser" method="post">
+		<table>
+			<tbody>
+				<tr>
+					<td>id: </td>
+					<td><input type="text" name="id" value="${user.id}" readonly="readonly"></td>
+				</tr>
+				<tr>
+					<td>firstName: </td>
+					<td><input type="text" name="firstName" value="${user.firstName}"></td>
+				</tr>
+				<tr>
+					<td>lastName: </td>
+					<td><input type="text" name="lastName" value="${user.lastName}"></td>
+				</tr>
+				<tr>
+					<td>email: </td>
+					<td><input type="text" name="email" value="${user.email}"></td>
+				</tr>
+				<tr>
+					<td>gender: </td>
+					<td><input type="text" name="gender" value="${user.gender}"></td>
+				</tr>
+				<tr>
+					<td>ipAddress: </td>
+					<td><input type="text" name="ipAddress" value="${user.ipAddress}"></td>
+				</tr>
+				<tr>
+					<td>lastUpdate: </td>
+					<td>${user.lastUpdate}</td>
+				</tr>
+			</tbody>
+		</table>
+		<button type="submit">Update</button>
 	</form>
+	<form action="/model/removeUser" method="post">
+		<input type="hidden" name="id" value="${user.id}">
+		<button type="submit">Delete</button>
+	</form>
+	<button><a href="/model/">List</a></button>
 </div>
 </body>
 </html>

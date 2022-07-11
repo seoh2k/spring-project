@@ -63,4 +63,12 @@ public class HomeController {
 		
 		return "redirect:/";
 	}
+	
+	@RequestMapping(value = "/modifyUser",  method = RequestMethod.POST)
+	public String modifyUser(Users user) {
+		
+		homeService.modifyUser(user);
+		
+		return "redirect:/getUserOne?id="+user.getId();
+	}
 }
