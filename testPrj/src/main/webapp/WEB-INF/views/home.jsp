@@ -10,6 +10,7 @@
 </h1>
 
 <div>
+	<button><a href="/model/addUser">Add</a></button>
 	<table>
 		<thead>
 			<tr>

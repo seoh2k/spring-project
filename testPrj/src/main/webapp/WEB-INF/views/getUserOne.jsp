@@ -28,7 +28,18 @@
 				</tr>
 				<tr>
 					<td>gender: </td>
-					<td><input type="text" name="gender" value="${user.gender}"></td>
+					<td>
+						<select name="gender">
+							<c:if test="${user.gender=='Male'}">
+								<option value="Male">Male</option>
+						    	<option value="Female">Female</option>
+							</c:if>
+							<c:if test="${user.gender=='Female'}">
+								<option value="Female">Female</option>
+								<option value="Male">Male</option>
+							</c:if>
+						</select>
+					</td>
 				</tr>
 				<tr>
 					<td>ipAddress: </td>

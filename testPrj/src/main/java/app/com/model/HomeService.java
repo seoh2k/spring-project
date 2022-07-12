@@ -33,4 +33,9 @@ public class HomeService {
 		homeMapper.updateUser(user);
 	}
 
+	public void addUser(Users user) {
+
+		homeMapper.insertUser(user);
+	}
+
 }

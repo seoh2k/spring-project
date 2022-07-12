@@ -37,4 +37,9 @@ public class HomeMapper {
 
 		session.update("app.com.model.HomeMapper.updateUser", user);
 	}
+
+	public void insertUser(Users user) {
+
+		session.insert("app.com.model.HomeMapper.insertUser", user);
+	}
 }

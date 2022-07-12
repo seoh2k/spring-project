@@ -56,7 +56,7 @@ public class HomeController {
 		return "getUserOne";
 	}
 	
-	@RequestMapping(value = "/removeUser",  method = RequestMethod.POST)
+	@RequestMapping(value = "/removeUser", method = RequestMethod.POST)
 	public String removeUser(@RequestParam(value="id", required = true) int id) {
 		
 		homeService.removeUser(id);
@@ -64,11 +64,25 @@ public class HomeController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value = "/modifyUser",  method = RequestMethod.POST)
+	@RequestMapping(value = "/modifyUser", method = RequestMethod.POST)
 	public String modifyUser(Users user) {
 		
 		homeService.modifyUser(user);
 		
 		return "redirect:/getUserOne?id="+user.getId();
+	}
+	
+	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
+	public String addUser() {
+		
+		return "addUser";
+	}
+	
+	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
+	public String addUser(Users user) {
+		
+		homeService.addUser(user);
+		
+		return "redirect:/";
 	}
 }
