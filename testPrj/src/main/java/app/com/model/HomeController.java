@@ -2,8 +2,10 @@ package app.com.model;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,18 +31,23 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	public String home(Model model,
+						@RequestParam(value="currentPage", defaultValue="1") int currentPage,
+						@RequestParam(value="rowPerPage", defaultValue="10") int rowPerPage) {
 		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		int usersTotal = homeService.getUsersTotal();
+		int lastPage = (int)(Math.ceil((double)usersTotal / rowPerPage));
+		int beginRow = (currentPage - 1) * rowPerPage;
 		
-		String formattedDate = dateFormat.format(date);
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("rowPerPage", rowPerPage);
+		params.put("beginRow", beginRow);
 		
-		List<Users> usersList = homeService.getUsersList();
+		List<Users> usersList = homeService.getUsersList(params);
 		
-		model.addAttribute("serverTime", formattedDate );
 		model.addAttribute("usersList", usersList);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("lastPage", lastPage);
 		
 		return "home";
 	}

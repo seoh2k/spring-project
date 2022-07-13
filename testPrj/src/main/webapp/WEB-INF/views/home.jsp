@@ -35,6 +35,15 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	
+	<ul>
+        <c:if test="${currentPage > 1}">
+            <button class="previous"><a href="/model/?currentPage=${currentPage-1}">previous</a></button>
+        </c:if>
+        <c:if test="${currentPage < lastPage}">
+            <button class="next"><a href="/model/?currentPage=${currentPage+1}">next</a></button>
+        </c:if>
+    </ul>
 </div>
 </body>
 </html>

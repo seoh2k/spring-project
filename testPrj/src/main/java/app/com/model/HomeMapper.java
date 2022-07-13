@@ -1,6 +1,7 @@
 package app.com.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,19 +13,15 @@ public class HomeMapper {
 	@Autowired
 	SqlSessionTemplate session;
 	
-	public List<Users> selectUsersList() {
-		List<Users> list = session.selectList("app.com.model.HomeMapper.selectUsersList");
-		
-		/*for(int i=0; i<list.size(); i++) {
-			System.out.println(list.get(i));
-		}*/
-		
-		return session.selectList("app.com.model.HomeMapper.selectUsersList");
+	public List<Users> selectUsersList(Map<String, Object> params) {
+
+		return session.selectList("app.com.model.HomeMapper.selectUsersList", params);
 	}
 
 //	public List<Users> selectUsersList();
 	
 	public Users selectUserOne(int id) {
+		
 		return session.selectOne("app.com.model.HomeMapper.selectUserOne", id);
 	}
 
@@ -41,5 +38,10 @@ public class HomeMapper {
 	public void insertUser(Users user) {
 
 		session.insert("app.com.model.HomeMapper.insertUser", user);
+	}
+
+	public int getUsersTotal() {
+		// TODO Auto-generated method stub
+		return session.selectOne("app.com.model.HomeMapper.getUsersTotal");
 	}
 }
