@@ -9,6 +9,10 @@ var main = {
         $('#btn-update').on('click', function(){
             _this.update();
         });
+        
+        $('#btn-delete').on('click', function(){
+            _this.delete();
+        });
     },
     save : function () {
         var data = {
@@ -56,7 +60,22 @@ var main = {
         }).fail(function (error) {
             alert(JSON.stringify(error));
         })
-    }
+    },
+    delete : function () {
+        var id = $('#id').val();
+
+        $.ajax({
+            type: 'POST',
+            url: '/model/removeUser/'+id,
+            dataType: 'text',
+            contentType: 'application/json; charset=utf-8'
+        }).done(function () {
+            alert('글이 삭제되었습니다.');
+            window.location.href='/model/';
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        })
+   }
 };
 
 main.init();

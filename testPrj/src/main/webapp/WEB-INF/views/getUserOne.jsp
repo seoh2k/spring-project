@@ -55,7 +55,7 @@
 	</form>
 	<form action="/model/removeUser" method="post">
 		<input type="hidden" name="id" value="${user.id}">
-		<button type="submit">Delete</button>
+		<button type="button" id="btn-delete">Delete</button>
 	</form>
 	<button><a href="/model/">List</a></button>
 </div>
