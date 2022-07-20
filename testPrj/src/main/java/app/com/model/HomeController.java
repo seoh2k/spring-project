@@ -73,12 +73,11 @@ public class HomeController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value = "/modifyUser", method = RequestMethod.POST)
-	public String modifyUser(Users user) {
+	@ResponseBody
+	@RequestMapping(value = "/modifyUser/{id}", method = RequestMethod.POST)
+	public void modifyUser(@RequestBody Users user) {
 		
 		homeService.modifyUser(user);
-		
-		return "redirect:/getUserOne?id="+user.getId();
 	}
 	
 	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
