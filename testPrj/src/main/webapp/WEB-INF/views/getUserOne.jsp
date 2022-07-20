@@ -3,61 +3,54 @@
 <html>
 <head>
 	<title>User</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 <body>
 <div>
 	<h1>User</h1>
 	<form>
-		<table>
-			<tbody>
-				<tr>
-					<td>id: </td>
-					<td><input type="text" id="id" value="${user.id}" readonly="readonly"></td>
-				</tr>
-				<tr>
-					<td>firstName: </td>
-					<td><input type="text" id="firstName" value="${user.firstName}"></td>
-				</tr>
-				<tr>
-					<td>lastName: </td>
-					<td><input type="text" id="lastName" value="${user.lastName}"></td>
-				</tr>
-				<tr>
-					<td>email: </td>
-					<td><input type="text" id="email" value="${user.email}"></td>
-				</tr>
-				<tr>
-					<td>gender: </td>
-					<td>
-						<select id="gender">
-							<c:if test="${user.gender=='Male'}">
-								<option value="Male">Male</option>
-						    	<option value="Female">Female</option>
-							</c:if>
-							<c:if test="${user.gender=='Female'}">
-								<option value="Female">Female</option>
-								<option value="Male">Male</option>
-							</c:if>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td>ipAddress: </td>
-					<td><input type="text" id="ipAddress" value="${user.ipAddress}"></td>
-				</tr>
-				<tr>
-					<td>lastUpdate: </td>
-					<td>${user.lastUpdate}</td>
-				</tr>
-			</tbody>
-		</table>
-		<button type="button" id="btn-update">Update</button>
+		<div class="mb-3">
+		    <label for="id" class="form-label">Id</label>
+		    <input type="text" class="form-control" id="id" value="${user.id}" readonly="readonly">
+		</div>
+		<div class="mb-3">
+		    <label for="firstName" class="form-label">First Name</label>
+		    <input type="text" class="form-control" id="firstName" value="${user.firstName}">
+		</div>
+		<div class="mb-3">
+		    <label for="lastName" class="form-label">Last Name</label>
+		    <input type="text" class="form-control" id="lastName" value="${user.lastName}">
+		</div>
+		<div class="mb-3">
+		    <label for="email" class="form-label">Email</label>
+		    <input type="text" class="form-control" id="email" value="${user.email}">
+		</div>
+		<div class="mb-3">
+			<label for="gender" class="form-label">Gender</label>
+		    <select id="gender" class="form-select" aria-label="Default select example">
+		    	<c:if test="${user.gender=='Male'}">
+					<option value="Male">Male</option>
+			    	<option value="Female">Female</option>
+				</c:if>
+				<c:if test="${user.gender=='Female'}">
+					<option value="Female">Female</option>
+					<option value="Male">Male</option>
+				</c:if>
+			</select>
+		</div>
+		<div class="mb-3">
+		    <label for="ipAddress" class="form-label">IP Address</label>
+		    <input type="text" class="form-control" id="ipAddress" value="${user.ipAddress}">
+		</div>
+		<div class="mb-3">
+		    <label for="lastUpdate" class="form-label">Last Update</label>
+		    <input type="text" class="form-control" id="lastUpdate" value="${user.lastUpdate}" readonly="readonly">
+		</div>
+		
+		<button type="button" id="btn-update" class="btn btn-outline-primary">Update</button>
+		<button type="button" id="btn-delete" class="btn btn-outline-primary">Delete</button>
+		<button class="btn btn-outline-primary"><a href="/model/">List</a></button>
 	</form>
-	<form action="/model/removeUser" method="post">
-		<input type="hidden" name="id" value="${user.id}">
-		<button type="button" id="btn-delete">Delete</button>
-	</form>
-	<button><a href="/model/">List</a></button>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

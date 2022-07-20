@@ -3,42 +3,38 @@
 <html>
 <head>
 	<title>add User</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 <body>
 <div>
 	<h1>User</h1>
 	<form>
-		<table>
-			<tbody>
-				<tr>
-					<td>firstName: </td>
-					<td><input type="text" id="firstName" pattern="^[a-zA-Z]+$"></td>
-				</tr>
-				<tr>
-					<td>lastName: </td>
-					<td><input type="text" id="lastName" pattern="^[a-zA-Z]+$"></td>
-				</tr>
-				<tr>
-					<td>email: </td>
-					<td><input type="text" id="email"></td>
-				</tr>
-				<tr>
-					<td>gender: </td>
-					<td>
-						<select id="gender">
-						    <option value="Male">Male</option>
-						    <option value="Female">Female</option>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td>ipAddress: </td>
-					<td><input type="text" id="ipAddress"></td>
-				</tr>
-			</tbody>
-		</table>
-		<button type="button" id="btn-save">Save</button>
-		<button><a href="/model/">List</a></button>
+		<div class="mb-3">
+		    <label for="firstName" class="form-label">First Name</label>
+		    <input type="text" class="form-control" id="firstName">
+		</div>
+		<div class="mb-3">
+		    <label for="lastName" class="form-label">Last Name</label>
+		    <input type="text" class="form-control" id="lastName">
+		</div>
+		<div class="mb-3">
+		    <label for="email" class="form-label">Email</label>
+		    <input type="text" class="form-control" id="email">
+		</div>
+		<div class="mb-3">
+			<label for="gender" class="form-label">Gender</label>
+		    <select id="gender" class="form-select" aria-label="Default select example">
+				<option value="Male">Male</option>
+				<option value="Female">Female</option>
+			</select>
+		</div>
+		<div class="mb-3">
+		    <label for="ipAddress" class="form-label">IP Address</label>
+		    <input type="text" class="form-control" id="ipAddress">
+		</div>
+		
+		<button type="button" id="btn-save" class="btn btn-outline-primary">Save</button>
+		<button class="btn btn-outline-primary"><a href="/model/">List</a></button>
 	</form>
 </div>
 
