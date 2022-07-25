@@ -49,7 +49,7 @@
 		
 		<button type="button" id="btn-update" class="btn btn-outline-primary">Update</button>
 		<button type="button" id="btn-delete" class="btn btn-outline-primary">Delete</button>
-		<button class="btn btn-outline-primary"><a href="/model/">List</a></button>
+		<button class="btn btn-outline-primary"><a href="/model/?currentPage=${currentPage}">List</a></button>
 	</form>
 </div>
 

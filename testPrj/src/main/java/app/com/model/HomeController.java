@@ -57,11 +57,13 @@ public class HomeController {
 	
 	@RequestMapping(value = "/getUserOne")
 	public String getUserOne(Model model,
-								@RequestParam(value="id", required = true) int id) {
+								@RequestParam(value="id", required = true) int id,
+								@RequestParam(value="currentPage", required = true) int currentPage) {
 		
 		Users user = homeService.getUserOne(id);
 		
 		model.addAttribute("user", user);
+		model.addAttribute("currentPage", currentPage);
 		
 		return "getUserOne";
 	}
