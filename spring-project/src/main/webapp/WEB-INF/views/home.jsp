@@ -9,8 +9,10 @@
 	<script type="module" src="/model/resources/js/index.js"></script>
 </head>
 <body>
-<h1>Users</h1>
+
 <div id="app">
+	<h1>Users</h1>
+	
 	<button class="btn btn-outline-primary"><a href="/model/addUser">Add</a></button>
 	<table class="table">
 		<thead>
@@ -25,7 +27,7 @@
 		</thead>
 		<tbody>
 			<%-- <c:forEach var="u" items="${usersList}"> --%>
-			<tr v-for="item in usersList">
+			<tr v-for="item in users">
 				<td scope="row">{{ item.id }}</td>
 				<td>{{ item.firstName }}</td>
 				<td>{{ item.lastName }}</td>
@@ -45,9 +47,6 @@
             <button class="next btn btn-outline-primary"><a href="/model/?currentPage=${currentPage+1}">next</a></button>
         </c:if>
     </ul>
-
-
-
 </div>
 </body>
 </html>

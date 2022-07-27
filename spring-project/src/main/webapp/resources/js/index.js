@@ -3,7 +3,7 @@ new Vue({
 	el: '#app',
 	data() {
 		return {
-			usersList: {
+			users: {
 				id: '',
 				firstName: '',
 				lastName: '',
@@ -14,9 +14,8 @@ new Vue({
 		}
 	},
 	mounted(){
-		axios.get("http://localhost:8083/model/read").then((response)=>{
-			console.log(response);
-			this.usersList = response.data;
+		axios.get("/model/read").then((response)=>{
+			this.users = response.data;
 		}).catch((error)=>{
 			console.log(error);
 		})
@@ -29,5 +28,22 @@ new Vue({
 //		arrow("this is");
 //			.then(response => (this.usersList = response))
 //			.catch(error => console.log(error))
+	},
+	methods : {
+		save : function() {
+            axios.post('/model/addUser', {
+            	firstName: this.users.firstName,
+            	lastName: this.users.lastName,
+            	email: this.users.email,
+            	gender: this.users.gender,
+            	ipAddress: this.users.ipAddress,
+            })
+            .then(() => {
+            	window.location.href='/model/';
+            })
+            .catch((ex) => {
+                console.error("failed save user", ex)
+            })
+		}
 	}
 })
