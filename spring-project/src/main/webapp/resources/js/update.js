@@ -7,34 +7,34 @@ export default {
 			<form>
 				<div class="mb-3">
 				    <label for="id" class="form-label">Id</label>
-				    <input type="text" class="form-control" v-model="users.id" readonly="readonly">
+				    <input type="text" class="form-control" v-model="user.id" readonly="readonly">
 				</div>
 				<div class="mb-3">
 				    <label for="firstName" class="form-label">First Name</label>
-				    <input type="text" class="form-control" v-model="users.firstName">
+				    <input type="text" class="form-control" v-model="user.firstName">
 				</div>
 				<div class="mb-3">
 				    <label for="lastName" class="form-label">Last Name</label>
-				    <input type="text" class="form-control" v-model="users.lastName">
+				    <input type="text" class="form-control" v-model="user.lastName">
 				</div>
 				<div class="mb-3">
 				    <label for="email" class="form-label">Email</label>
-				    <input type="text" class="form-control" v-model="users.email">
+				    <input type="text" class="form-control" v-model="user.email">
 				</div>
 				<div class="mb-3">
 					<label for="gender" class="form-label">Gender</label>
-				    <select v-model="users.gender" class="form-select" aria-label="Default select example">
+				    <select v-model="user.gender" class="form-select" aria-label="Default select example">
 						<option value="Male">Male</option>
 						<option value="Female">Female</option>
 					</select>
 				</div>
 				<div class="mb-3">
 				    <label for="ipAddress" class="form-label">IP Address</label>
-				    <input type="text" class="form-control" v-model="users.ipAddress">
+				    <input type="text" class="form-control" v-model="user.ipAddress">
 				</div>
 				<div class="mb-3">
 				    <label for="lastUpdate" class="form-label">Last Update</label>
-				    <input type="text" class="form-control" v-model="users.lastUpdate" readonly="readonly">
+				    <input type="text" class="form-control" v-model="user.lastUpdate" readonly="readonly">
 				</div>
 				
 				<button type="button" @click="update" class="btn btn-outline-primary">Update</button>
@@ -45,7 +45,7 @@ export default {
 	`,
 	data() {
 		return { 
-			users: {
+			user: {
 				id: '',
 				firstName: '',
 				lastName: '',
@@ -56,22 +56,19 @@ export default {
 		}
 	},
 	created() {
-	    eventBus.$on("showUpdatePage", (user) => {
-	      this.users = user;
+	    eventBus.$on("showUpdatePage", (response) => {
+	      this.user = response;
 	    });
-	},
-	beforeDestroy() {
-		eventBus.$off("showUpdatePage");
 	},
 	methods : {
 		update : function() {
-            axios.post('/model/modifyUser/'+this.users.id, {
-            	id: this.users.id,
-            	firstName: this.users.firstName,
-            	lastName: this.users.lastName,
-            	email: this.users.email,
-            	gender: this.users.gender,
-            	ipAddress: this.users.ipAddress,
+            axios.post('/model/modifyUser/'+this.user.id, {
+            	id: this.user.id,
+            	firstName: this.user.firstName,
+            	lastName: this.user.lastName,
+            	email: this.user.email,
+            	gender: this.user.gender,
+            	ipAddress: this.user.ipAddress,
             }).then(() => {
             	window.location.href='/model/'
             }).catch((ex) => {
