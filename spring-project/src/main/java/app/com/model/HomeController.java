@@ -1,11 +1,6 @@
 package app.com.model;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -44,17 +38,16 @@ public class HomeController {
 		return homeService.getUsersList();
 	}
 	
-	@RequestMapping(value = "/getUserOne")
-	public String getUserOne(Model model,
-								@RequestParam(value="id", required = true) int id,
-								@RequestParam(value="currentPage", required = true) int currentPage) {
-		
-		Users user = homeService.getUserOne(id);
-		
-		model.addAttribute("user", user);
-		model.addAttribute("currentPage", currentPage);
-		
+	@RequestMapping(value = "/getUserOne/{id}")
+	public String getUserOne(Model model,@PathVariable int id) {
 		return "getUserOne";
+	}
+	
+	@RequestMapping(value = "/getUserById/{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public Users getUserById(@PathVariable int id) {
+		
+		return homeService.getUserOne(id);
 	}
 	
 	@ResponseBody
@@ -68,16 +61,17 @@ public class HomeController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/modifyUser/{id}", method = RequestMethod.POST)
-	public void modifyUser(@RequestBody Users user) {
+	public void modifyUser(@RequestBody Users user,
+							@PathVariable int id) {
 		
 		homeService.modifyUser(user);
 	}
 	
-	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/addUser", method = RequestMethod.GET)
 	public String addUser() {
 		
 		return "addUser";
-	}
+	}*/
 	
 	@ResponseBody
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)

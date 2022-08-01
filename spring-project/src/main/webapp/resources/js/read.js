@@ -1,9 +1,9 @@
 export default {
 	template : `
-		<div class="col-md-6 themed-grid-col">
-			<h1>Users</h1>
+		<div class="col-md-6 themed-grid-col" v-show="$parent.isShow == 'read'">
+			<h1>Users List</h1>
 		
-			<button class="btn btn-outline-primary"><a href="/model/addUser">Add</a></button>
+			<button class="btn btn-outline-primary"><a @click="showCreatePage">Add</a></button>
 			<div>* email을 클릭하면 상세페이지로 이동</div>
 			<table class="table">
 				<thead>
@@ -31,7 +31,8 @@ export default {
 	`,
 	data() {
 		return { 
-			users: []
+			users: [],
+			
 		}
 	},
 	mounted(){
@@ -50,4 +51,9 @@ export default {
 //			.then(response => (this.usersList = response))
 //			.catch(error => console.log(error))
 	},
+	methods : {
+		showCreatePage : function(){
+			this.$parent.isShow = 'create'
+		}
+	}
 }
