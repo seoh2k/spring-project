@@ -41,21 +41,62 @@ export default {
 				gender: '',
 				ipAddress: '',
 			},
+			errors: [],
+			errorShow : false
 		}
 	},
 	methods : {
 		save : function() {
-            axios.post('/model/addUser', {
-            	firstName: this.user.firstName,
-            	lastName: this.user.lastName,
-            	email: this.user.email,
-            	gender: this.user.gender,
-            	ipAddress: this.user.ipAddress,
-            }).then(() => {
-            	window.location.href='/model/';
-            }).catch((ex) => {
-                console.error("failed save user", ex)
-            })
+			this.validationCheck();
+			if(confirm('저장하시겠습니까?')){
+				if(this.errors.length == 0) {
+		            axios.post('/model/addUser', {
+		            	firstName: this.user.firstName,
+		            	lastName: this.user.lastName,
+		            	email: this.user.email,
+		            	gender: this.user.gender,
+		            	ipAddress: this.user.ipAddress,
+		            }).then((res) => {
+		            	if(res.status == '200') {
+	                		alert("저장되었습니다.");
+	                		window.location.href='/model/'
+	                	} else {
+	                		alert("실행 중 실패했습니다.\n다시 이용해 주세요.");
+	                	}
+		            }).catch((ex) => {
+		                console.error("failed save user", ex)
+		            })
+				} else {
+					alert(this.errors);
+				}
+			}
 		},
+		validationCheck : function() {
+        	this.errors = [];
+        	if(!this.user.firstName) {
+        		this.errors.push("firstName을 입력해주세요.");
+        	}
+        	if(!this.user.lastName) {
+        		this.errors.push("lastName을 입력해주세요.");
+        	}
+        	if(!this.user.email) {
+        		this.errors.push("email을 입력해주세요.");
+        	} else if (!this.validEmail(this.user.email)) {
+                this.errors.push("email 형식을 확인하세요.");
+            }
+        	if(!this.user.gender) {
+        		this.errors.push("gender를 입력해주세요.");
+        	}
+        	if(!this.user.ipAddress) {
+        		this.errors.push("ipAddress를 입력해주세요.");
+        	}
+        	if(!this.errorShow) {
+        		return true;
+        	}
+        },
+        validEmail: function(email) {
+        	var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+        }
 	}
 }
