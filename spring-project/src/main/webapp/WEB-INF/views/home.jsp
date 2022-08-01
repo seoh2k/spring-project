@@ -11,7 +11,8 @@
 <script type="module" src="/model/resources/js/instance.js"></script>
 <body>
 <div id="app" class="container">
-	<read-component></read-component>		
+	<read-component></read-component>
+	<create-component></create-component>
 </div>
 </body>
 </html>
