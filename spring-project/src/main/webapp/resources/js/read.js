@@ -1,3 +1,5 @@
+import { eventBus } from './instance.js';
+
 export default {
 	template : `
 		<div class="col-md-6 themed-grid-col" v-show="$parent.isShow == 'read'">
@@ -12,18 +14,14 @@ export default {
 						<th scope="col">first_name</th>
 						<th scope="col">last_name</th>
 						<th scope="col">email</th>
-						<th scope="col">gender</th>
-						<th scope="col">ip_address</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr v-for="item in users">
 						<td scope="row">{{ item.id }}</td>
-						<td>{{ item.firstName }}</td>
-						<td>{{ item.lastName }}</td>
-						<td><a @click="moveUserOne(item.id)">{{ item.email }}</a></td>
-						<td>{{ item.gender }}</td>
-						<td>{{ item.ipAddress }}</td>
+						<td><a @click="showUpdatePage(item)">{{ item.firstName }}</a></td>
+						<td><a @click="showUpdatePage(item)">{{ item.lastName }}</a></td>
+						<td><a @click="showUpdatePage(item)">{{ item.email }}</a></td>
 					</tr>
 				</tbody>
 			</table>
@@ -32,6 +30,9 @@ export default {
 	data() {
 		return { 
 			users: [],
+			user : {
+				id: ''
+			}
 			
 		}
 	},
@@ -54,6 +55,10 @@ export default {
 	methods : {
 		showCreatePage : function(){
 			this.$parent.isShow = 'create'
-		}
+		},
+		showUpdatePage : function(user){
+			eventBus.$emit("showUpdatePage", user);
+			this.$parent.isShow = 'update';
+		},
 	}
 }

@@ -13,6 +13,7 @@
 <div id="app" class="container">
 	<read-component></read-component>
 	<create-component></create-component>
+	<update-component></update-component>
 </div>
 </body>
 </html>
