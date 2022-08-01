@@ -18,7 +18,7 @@ export default {
 				</thead>
 				<tbody>
 					<tr v-for="item in users">
-						<td scope="row">{{ item.id }}</td>
+						<td scope="row"><a @click="showUpdatePage(item)">{{ item.id }}</a></td>
 						<td><a @click="showUpdatePage(item)">{{ item.firstName }}</a></td>
 						<td><a @click="showUpdatePage(item)">{{ item.lastName }}</a></td>
 						<td><a @click="showUpdatePage(item)">{{ item.email }}</a></td>

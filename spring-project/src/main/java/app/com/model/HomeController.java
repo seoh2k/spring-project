@@ -52,11 +52,9 @@ public class HomeController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/removeUser/{id}", method = RequestMethod.POST)
-	public String removeUser(@PathVariable int id) {
+	public void removeUser(@PathVariable int id) {
 		
 		homeService.removeUser(id);
-		
-		return "redirect:/";
 	}
 	
 	@ResponseBody
