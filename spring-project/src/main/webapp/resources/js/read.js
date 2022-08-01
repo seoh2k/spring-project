@@ -29,11 +29,7 @@ export default {
 	`,
 	data() {
 		return { 
-			users: [],
-			user : {
-				id: ''
-			}
-			
+			users: []
 		}
 	},
 	mounted(){

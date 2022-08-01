@@ -15,9 +15,7 @@ new Vue({
 		'create-component': create_component,
 		'update-component': update_component
 	},
-	data() {
-		return { 
-			isShow: 'read',
-		}
-	},
+	data : {
+		isShow: 'read'
+	}
 })
