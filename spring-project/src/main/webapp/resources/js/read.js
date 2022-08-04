@@ -1,4 +1,5 @@
 import { eventBus } from './instance.js';
+import SearchComponent from './search.js';
 
 export default {
 	template : `
@@ -6,7 +7,7 @@ export default {
 			<h1>Users List</h1>
 		
 			<button class="btn btn-outline-primary"><a @click="showCreatePage">Add</a></button>
-			<div>* email을 클릭하면 상세페이지로 이동</div>
+			<SearchComponent />
 			<table class="table">
 				<thead>
 					<tr>
@@ -27,26 +28,16 @@ export default {
 			</table>
 		</div>
 	`,
+	components: {
+		SearchComponent
+	},
 	data() {
 		return { 
 			users: []
 		}
 	},
 	mounted(){
-		axios.get("/model/read").then((response)=>{
-			this.users = response.data;
-		}).catch((error)=>{
-			console.log(error);
-		})
-		
-		// arrow function 사용하는 다른 방법
-//		const arrow = (text) =>{
-//			console.log( text + " arrow function");
-//		};
-//		
-//		arrow("this is");
-//			.then(response => (this.usersList = response))
-//			.catch(error => console.log(error))
+		this.loadPage('');
 	},
 	methods : {
 		showCreatePage : function(){
@@ -56,5 +47,16 @@ export default {
 			eventBus.$emit("showUpdatePage", user);
 			this.$parent.isShow = 'update';
 		},
+		loadPage : function(srhKeyword) {
+			axios.get('/model/read',{
+				params : {
+					srhKeyword : srhKeyword
+				}
+			}).then((response)=>{
+				this.users = response.data;
+			}).catch((error)=>{
+				console.log(error);
+			})
+		}
 	}
 }

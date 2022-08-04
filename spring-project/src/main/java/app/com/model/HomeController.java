@@ -6,12 +6,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import app.com.model.vo.SearchVO;
 
 /**
  * Handles requests for the application home page.
@@ -34,14 +35,14 @@ public class HomeController {
 	
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Users> read() {
-		return homeService.getUsersList();
+	public List<Users> read(SearchVO searchVO) {
+		return homeService.getUsersList(searchVO);
 	}
 	
-	@RequestMapping(value = "/getUserOne/{id}")
-	public String getUserOne(Model model,@PathVariable int id) {
+	/*@RequestMapping(value = "/getUserOne/{id}")
+	public String getUserOne(Model model, @PathVariable int id) {
 		return "getUserOne";
-	}
+	}*/
 	
 	@RequestMapping(value = "/getUserById/{id}", method = RequestMethod.GET)
 	@ResponseBody

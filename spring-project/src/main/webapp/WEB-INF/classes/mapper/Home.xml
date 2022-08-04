@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="app.com.model.HomeMapper">
-	<select id="selectUsersList" resultType="app.com.model.Users">
+	<select id="selectUsersList" parameterType="app.com.model.vo.SearchVO" resultType="app.com.model.Users">
 		SELECT 
 			id as id,
 			first_name as firstName,
@@ -11,6 +11,10 @@
 			ip_address as ipAddress,
 			last_update as lastUpdate
 		FROM users
+		WHERE 1=1
+		<if test='srhKeyword != null and srhKeyword != ""'>
+			AND email LIKE CONCAT('%', #{srhKeyword}, '%')
+		</if>
 		ORDER BY id desc
 	</select>
 	

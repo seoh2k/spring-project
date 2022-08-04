@@ -1,10 +1,11 @@
 package app.com.model;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import app.com.model.vo.SearchVO;
 
 @Service
 public class HomeService {
@@ -12,9 +13,9 @@ public class HomeService {
 	@Autowired 
 	HomeMapper homeMapper;
 
-	public List<Users> getUsersList() {
+	public List<Users> getUsersList(SearchVO searchVO) {
 		
-		return homeMapper.selectUsersList();
+		return homeMapper.selectUsersList(searchVO);
 	}
 
 	public Users getUserOne(int id) {

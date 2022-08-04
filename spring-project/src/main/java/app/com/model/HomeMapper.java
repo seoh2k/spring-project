@@ -7,15 +7,17 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import app.com.model.vo.SearchVO;
+
 @Repository
 public class HomeMapper {
 
 	@Autowired
 	SqlSessionTemplate session;
 	
-	public List<Users> selectUsersList() {
+	public List<Users> selectUsersList(SearchVO searchVO) {
 
-		return session.selectList("app.com.model.HomeMapper.selectUsersList");
+		return session.selectList("app.com.model.HomeMapper.selectUsersList", searchVO);
 	}
 
 //	public List<Users> selectUsersList();
