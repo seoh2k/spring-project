@@ -1,4 +1,4 @@
-package app.com.model;
+package app.com.model.vo;
 
 public class Users {
 	

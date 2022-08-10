@@ -1,11 +1,13 @@
-package app.com.model;
+package app.com.model.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import app.com.model.mapper.HomeMapper;
 import app.com.model.vo.SearchVO;
+import app.com.model.vo.Users;
 
 @Service
 public class HomeService {

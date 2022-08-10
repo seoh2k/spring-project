@@ -1,4 +1,4 @@
-package app.com.model;
+package app.com.model.controller;
 
 import java.util.List;
 
@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import app.com.model.service.HomeService;
 import app.com.model.vo.SearchVO;
+import app.com.model.vo.Users;
 
 /**
  * Handles requests for the application home page.
