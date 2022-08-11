@@ -1,4 +1,4 @@
-import { eventBus } from './instance.js';
+import { eventBus } from '../../js/instance.js';
 import SearchComponent from './search.js';
 
 export default {

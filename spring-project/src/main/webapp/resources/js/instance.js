@@ -1,6 +1,6 @@
-import readComponent from './read.js';
-import createComponent from './create.js';
-import updateComponent from './update.js';
+import readComponent from './components/read.js';
+import createComponent from './components/create.js';
+import updateComponent from './components/update.js';
 
 export const eventBus = new Vue();
 
